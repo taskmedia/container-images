@@ -20,13 +20,13 @@ docker pull fty4/<name>:main
 
 ## Images
 
-| Image | ghcr.io | Docker Hub | Status |
-|-------|---------|------------|--------|
-| kubectl-yq | `ghcr.io/taskmedia/kubectl-yq` | `fty4/kubectl-yq` | pending merge |
-| kubectl-gpg-ncftp | `ghcr.io/taskmedia/kubectl-gpg-ncftp` | `fty4/kubectl-gpg-ncftp` | pending merge |
-| curl-jq | `ghcr.io/taskmedia/curl-jq` | `fty4/curl-jq` | pending merge |
-| scratch-success | `ghcr.io/taskmedia/scratch-success` | `fty4/scratch-success` | pending merge |
+| Image | ghcr.io | Docker Hub |
+|-------|---------|------------|
+| kubectl-yq | `ghcr.io/taskmedia/kubectl-yq` | `fty4/kubectl-yq` |
+| kubectl-gpg-ncftp | `ghcr.io/taskmedia/kubectl-gpg-ncftp` | `fty4/kubectl-gpg-ncftp` |
+| curl-jq | `ghcr.io/taskmedia/curl-jq` | `fty4/curl-jq` |
+| scratch-success | `ghcr.io/taskmedia/scratch-success` | `fty4/scratch-success` |
 
 Each image was originally maintained in its own repository; those repositories
-are being merged in with full git history preserved and will be archived with
-a pointer back here once the move is complete.
+have been merged in with full git history preserved and are now archived,
+each with a README pointing back here.
