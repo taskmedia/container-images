@@ -175,3 +175,19 @@ jobs:
           package-type: 'container'
           min-versions-to-keep: 100
           delete-only-untagged-versions: 'true'
+
+  # Single always-run check to use for branch protection: the `build` matrix
+  # only spawns jobs for changed images, so a required check naming a
+  # specific matrix entry (e.g. "build (kubectl-yq)") would never report on
+  # PRs that don't touch that image and would block merging forever.
+  build-result:
+    needs: [detect, build]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check build result
+        run: |
+          if [[ "${{ needs.build.result }}" == "failure" || "${{ needs.build.result }}" == "cancelled" ]]; then
+            echo "build job failed or was cancelled"
+            exit 1
+          fi
