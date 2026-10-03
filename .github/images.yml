@@ -1,13 +1,13 @@
 # Build manifest for .github/workflows/docker.yml.
 #
 # Each entry describes one image's build parameters. `name` doubles as the
-# top-level directory holding that image's Dockerfile and the published
+# directory under images/ holding that image's Dockerfile and the published
 # image name (ghcr.io/taskmedia/<name>, fty4/<name>) — the workflow never
 # derives either from github.repository, so images keep publishing to their
 # existing coordinates regardless of where the source lives.
 #
-# - name: <directory / published image name>
-#   context: <build context, defaults to "<name>" when omitted>
+# - name: <directory under images/ / published image name>
+#   context: <build context, defaults to "images/<name>" when omitted>
 #   platforms: [<comma-joined list passed to docker/build-push-action>]
 #
 # Populated as each source repo is merged in (see the map's

@@ -1,7 +1,7 @@
 # container-images
 
 Shared OCI container images maintained by task.media. Each image lives under
-its own top-level directory with a `Dockerfile` and image-specific
+its own directory in `images/` with a `Dockerfile` and image-specific
 `README.md`, and is built/published by a single shared dynamic CI workflow
 (`.github/workflows/docker.yml`, driven by `.github/images.yml`).
 

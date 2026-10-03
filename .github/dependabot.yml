@@ -11,6 +11,6 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "gomod"
-    directory: "/scratch-success"
+    directory: "/images/scratch-success"
     schedule:
       interval: "weekly"

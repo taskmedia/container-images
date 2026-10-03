@@ -62,7 +62,7 @@ jobs:
             selected=""
             while IFS= read -r name; do
               [[ -z "$name" ]] && continue
-              if echo "$changed" | grep -q "^${name}/"; then
+              if echo "$changed" | grep -q "^images/${name}/"; then
                 selected="${selected}${name}"$'\n'
               fi
             done <<< "$all_names"
@@ -95,7 +95,7 @@ jobs:
         run: |
           set -euo pipefail
           entry=$(yq -o=json ".images[] | select(.name == \"${{ matrix.image }}\")" .github/images.yml)
-          context=$(echo "$entry" | jq -r '.context // "${{ matrix.image }}"')
+          context=$(echo "$entry" | jq -r '.context // "images/${{ matrix.image }}"')
           platforms=$(echo "$entry" | jq -r '.platforms | join(",")')
           echo "context=${context}" >> "$GITHUB_OUTPUT"
           echo "platforms=${platforms}" >> "$GITHUB_OUTPUT"
