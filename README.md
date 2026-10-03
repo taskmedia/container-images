@@ -22,10 +22,10 @@ docker pull fty4/<name>:main
 
 | Image | ghcr.io | Docker Hub |
 |-------|---------|------------|
-| kubectl-yq | `ghcr.io/taskmedia/kubectl-yq` | `fty4/kubectl-yq` |
-| kubectl-gpg-ncftp | `ghcr.io/taskmedia/kubectl-gpg-ncftp` | `fty4/kubectl-gpg-ncftp` |
-| curl-jq | `ghcr.io/taskmedia/curl-jq` | `fty4/curl-jq` |
-| scratch-success | `ghcr.io/taskmedia/scratch-success` | `fty4/scratch-success` |
+| [kubectl-yq](images/kubectl-yq) | `ghcr.io/taskmedia/kubectl-yq` | `fty4/kubectl-yq` |
+| [kubectl-gpg-ncftp](images/kubectl-gpg-ncftp) | `ghcr.io/taskmedia/kubectl-gpg-ncftp` | `fty4/kubectl-gpg-ncftp` |
+| [curl-jq](images/curl-jq) | `ghcr.io/taskmedia/curl-jq` | `fty4/curl-jq` |
+| [scratch-success](images/scratch-success) | `ghcr.io/taskmedia/scratch-success` | `fty4/scratch-success` |
 
 Each image was originally maintained in its own repository; those repositories
 have been merged in with full git history preserved and are now archived,
