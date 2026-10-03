@@ -13,4 +13,6 @@
 # Populated as each source repo is merged in (see the map's
 # "Merge <image> into container-images" tickets). Left empty until then so
 # the detect job has nothing to build yet.
-images: []
+images:
+  - name: kubectl-gpg-ncftp
+    platforms: [linux/amd64, linux/arm64]
