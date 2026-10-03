@@ -20,3 +20,5 @@ images:
     platforms: [linux/amd64, linux/arm64]
   - name: curl-jq
     platforms: [linux/386, linux/amd64, linux/arm64, linux/ppc64le]
+  - name: scratch-success
+    platforms: [linux/amd64, linux/arm/v7, linux/arm64]
