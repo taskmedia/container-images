@@ -16,3 +16,5 @@
 images:
   - name: kubectl-gpg-ncftp
     platforms: [linux/amd64, linux/arm64]
+  - name: kubectl-yq
+    platforms: [linux/amd64, linux/arm64]
