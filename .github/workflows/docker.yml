@@ -100,6 +100,29 @@ jobs:
           echo "context=${context}" >> "$GITHUB_OUTPUT"
           echo "platforms=${platforms}" >> "$GITHUB_OUTPUT"
 
+          # Images that wrap an upstream image (`version-from-dockerfile: true`) are
+          # additionally tagged with the upstream tag from their first FROM line:
+          # <tag> (moves with every rebuild) and <tag>-<yyyymmdd> (per build).
+          extra_tags=""
+          if [[ "$(echo "$entry" | jq -r '."version-from-dockerfile" // false')" == "true" ]]; then
+            base_ref=$(grep -m1 -iE '^FROM[[:space:]]' "${context}/Dockerfile" | awk '{print $2}' | sed 's/@.*//')
+            base_tag="${base_ref##*:}"
+            if [[ "$base_ref" != *:* || -z "$base_tag" ]]; then
+              echo "version-from-dockerfile: no tag found in FROM line of ${context}/Dockerfile" >&2
+              exit 1
+            fi
+            stamp=$(date -u +%Y%m%d)
+            for tag in "${base_tag}" "${base_tag}-${stamp}"; do
+              extra_tags+="ghcr.io/taskmedia/${{ matrix.image }}:${tag}"$'\n'
+              extra_tags+="fty4/${{ matrix.image }}:${tag}"$'\n'
+            done
+          fi
+          {
+            echo "extra_tags<<EOF_EXTRA_TAGS"
+            printf '%s' "$extra_tags"
+            echo "EOF_EXTRA_TAGS"
+          } >> "$GITHUB_OUTPUT"
+
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
@@ -149,6 +172,7 @@ jobs:
             ghcr.io/taskmedia/${{ matrix.image }}:latest
             fty4/${{ matrix.image }}:main
             fty4/${{ matrix.image }}:latest
+            ${{ steps.config.outputs.extra_tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=${{ matrix.image }}
           cache-to: type=gha,mode=max,scope=${{ matrix.image }}
@@ -165,7 +189,7 @@ jobs:
         run: |
           curl -s https://raw.githubusercontent.com/sigstore/root-signing/refs/heads/main/targets/signing_config.v0.2.json \
             | jq 'del(.rekorTlogUrls)' > /tmp/signing_config.json
-          echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign --yes --signing-config /tmp/signing_config.json {}@${{ steps.build-and-push.outputs.digest }}
+          printf '%s\n' "${{ steps.meta.outputs.tags }}" "${{ steps.config.outputs.extra_tags }}" | grep '^ghcr.io/' | xargs -I {} cosign sign --yes --signing-config /tmp/signing_config.json {}@${{ steps.build-and-push.outputs.digest }}
 
       # Clean up legacy images from ghcr.io
       - uses: actions/delete-package-versions@v5

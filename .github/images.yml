@@ -9,6 +9,8 @@
 # - name: <directory under images/ / published image name>
 #   context: <build context, defaults to "images/<name>" when omitted>
 #   platforms: [<comma-joined list passed to docker/build-push-action>]
+#   version-from-dockerfile: <true to also tag with the upstream tag of the
+#     first FROM line, as <tag> and <tag>-<yyyymmdd>; defaults to false>
 #
 # Populated as each source repo is merged in (see the map's
 # "Merge <image> into container-images" tickets). Left empty until then so
@@ -24,3 +26,4 @@ images:
     platforms: [linux/amd64, linux/arm/v7, linux/arm64]
   - name: kanboard
     platforms: [linux/amd64, linux/arm64]
+    version-from-dockerfile: true
