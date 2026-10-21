@@ -14,3 +14,7 @@ updates:
     directory: "/images/scratch-success"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/images/kanboard"
+    schedule:
+      interval: "weekly"
