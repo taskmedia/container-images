@@ -26,6 +26,7 @@ docker pull fty4/<name>:main
 | [kubectl-gpg-ncftp](images/kubectl-gpg-ncftp) | `ghcr.io/taskmedia/kubectl-gpg-ncftp` | `fty4/kubectl-gpg-ncftp` |
 | [curl-jq](images/curl-jq) | `ghcr.io/taskmedia/curl-jq` | `fty4/curl-jq` |
 | [scratch-success](images/scratch-success) | `ghcr.io/taskmedia/scratch-success` | `fty4/scratch-success` |
+| [kanboard](images/kanboard) | `ghcr.io/taskmedia/kanboard` | `fty4/kanboard` |
 
 Each image was originally maintained in its own repository; those repositories
 have been merged in with full git history preserved and are now archived,
