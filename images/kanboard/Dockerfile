@@ -1,4 +1,4 @@
-FROM kanboard/kanboard:v1.2.56
+FROM kanboard/kanboard:v1.2.57
 
 # Image annotations
 # see: https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
